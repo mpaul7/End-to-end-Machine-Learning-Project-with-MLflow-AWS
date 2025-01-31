@@ -1,1 +1,1 @@
-# End to End Machine Learning Project with MLflow and AWS deployment
+# End to End Machine Learning Project with MLflow and AWS Deployment
