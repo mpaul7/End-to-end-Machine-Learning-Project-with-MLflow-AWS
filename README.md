@@ -15,3 +15,8 @@
 9. Update the app.py
 
 
+#export the environment variable
+
+export MLFLOW_TRACKING_URI=https://dagshub.com/mpaul7/End-to-end-Machine-Learning-Project-with-MLflow-AWS.mlflow
+export MLFLOW_TRACKING_USERNAME=mpaul7
+export MLFLOW_TRACKING_PASSWORD=Paul73#77

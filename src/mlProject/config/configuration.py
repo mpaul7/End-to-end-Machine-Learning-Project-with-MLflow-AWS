@@ -4,7 +4,8 @@ from mlProject.entity.config_entity import (
     DataIngestionConfig, 
     DataValidationConfig,
     DataTransformationConfig,
-    ModelTrainerConfig
+    ModelTrainerConfig,
+    ModelEvaluationConfig
 )
 
 class ConfigurationManager:
@@ -72,3 +73,20 @@ class ConfigurationManager:
             target_column=schema_model_trainer.name
         )
         return model_trainer_config
+    
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config_model_evaluation = self.config.model_evaluation
+        params_model_evaluation = self.params.ElasticNet
+        schema_model_evaluation = self.schema.TARGET_COLUMN
+        create_directories([config_model_evaluation.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=config_model_evaluation.root_dir,
+            test_data_path=config_model_evaluation.test_data_path,
+            model_path=config_model_evaluation.model_path,
+            all_params=params_model_evaluation,
+            metric_file_name=config_model_evaluation.metric_file_name,
+            target_column=schema_model_evaluation.name,
+            mlflow_uri="https://dagshub.com/mpaul7/End-to-end-Machine-Learning-Project-with-MLflow-AWS.mlflow"
+        )
+        return model_evaluation_config
