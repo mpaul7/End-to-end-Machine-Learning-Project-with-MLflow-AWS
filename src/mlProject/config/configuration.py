@@ -3,7 +3,8 @@ from mlProject.utils.common import read_yaml, create_directories
 from mlProject.entity.config_entity import (
     DataIngestionConfig, 
     DataValidationConfig,
-    DataTransformationConfig
+    DataTransformationConfig,
+    ModelTrainerConfig
 )
 
 class ConfigurationManager:
@@ -54,3 +55,20 @@ class ConfigurationManager:
             data_path=config_data_transformation.data_path
         )
         return data_transformation_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config_model_trainer = self.config.model_trainer
+        params_model_trainer = self.params.ElasticNet
+        schema_model_trainer = self.schema.TARGET_COLUMN
+        create_directories([config_model_trainer.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config_model_trainer.root_dir,
+            train_data_path=config_model_trainer.train_data_path,
+            test_data_path=config_model_trainer.test_data_path,
+            model_name=config_model_trainer.model_name,
+            alpha=params_model_trainer.alpha,
+            l1_ratio=params_model_trainer.l1_ratio,
+            target_column=schema_model_trainer.name
+        )
+        return model_trainer_config
